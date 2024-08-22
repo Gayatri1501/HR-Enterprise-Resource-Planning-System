@@ -1,0 +1,136 @@
+<!-- Add this in the head section of your HTML -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css">
+
+<!--<script>-->
+<!--  $(document).ready(function() {-->
+<!--    $('#navbar-search-input').css('background-color', 'yellow');-->
+<!--  });-->
+<!--</script>-->
+
+
+<!-- Add this at the end of your HTML, after including other scripts -->
+<script>
+        $(document).ready(function() {
+            $('#navbar-search-input').on('input', function() {
+                var searchQuery = $(this).val().toLowerCase();
+                filterEmployees(searchQuery);
+            });
+
+            function filterEmployees(query) {
+                $('tbody tr').each(function() {
+                    var fullName = $(this).find('td:nth-child(2)').text().toLowerCase();
+                    var designation = $(this).find('td:nth-child(3)').text().toLowerCase();
+                    var email = $(this).find('td:nth-child(4)').text().toLowerCase();
+                    var profile = $(this).find('td:nth-child(5)').text().toLowerCase();
+                    var workExp = $(this).find('td:nth-child(6)').text().toLowerCase();
+                    var salary = $(this).find('td:nth-child(7)').text().toLowerCase();
+
+                    if (fullName.includes(query) || designation.includes(query) || email.includes(query) || profile.includes(query) || workExp.includes(query) || salary.includes(query)) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            }
+        });
+    </script>
+
+
+{% include 'user_index_header.html' %}
+
+{% include 'admin_index_navbar.html' %}
+
+
+
+<div class="col-lg-11 grid-margin stretch-card">
+
+              <div class="card">
+
+                <div class="card-body">
+                  <h4 class="card-title">View All Employee</h4>
+                  <p class="card-description">
+                     <code>Employee List</code>
+                  </p>
+
+
+                  <div class="table-responsive" style="max-width: 95%; overflow-y: auto;">
+
+                    <table class="table table-striped" >
+                      <thead>
+                        <tr>
+
+                          <th>
+                            Profile
+                          </th>
+                          <th>
+                            Full name
+                          </th>
+                          <th>
+                            Designation
+                          </th>
+                          <th>
+                            Email
+                          </th>
+                          <th>
+                            Profile
+                          </th>
+                          <th>
+                            Work Exp
+                          </th>
+                          <th>
+                            Salary
+                          </th>
+                          <th>
+                            View
+                          </th>
+
+                        </tr>
+                      </thead>
+                      {% for n in profilelist %}
+                      <tbody >
+                        <tr>
+
+                          <td class="py-1">
+                            <img src="{{ url_for('static', filename='upload_img/' + n.uimg.decode('utf-8')) }}" alt="image">
+                          </td>
+                          <td>
+                            {{ n.fname }}
+                          </td>
+
+                          <td>
+                            {{ n.des }}
+                          </td>
+                          <td>
+                            {{ n.email }}
+                          </td>
+                          <td>
+                            {{ n.profile }}
+                          </td>
+                          <td>
+                            {{n.exp}}
+                          </td>
+                          <td>
+                            {{n.salary}}
+                          </td>
+
+                          <td>
+                            <a href="{{ url_for('adminviewuserprofile', uname=n.uname) }}" class="btn btn-dark btn-icon-text"><i class="bi bi-eye btn-icon-append"></i></a> </td>
+
+
+                        </tr>
+
+                      </tbody>
+                      {% endfor %}
+                    </table>
+
+                  </div>
+                </div>
+              </div>
+</div>
+
+
+
+
+{% include 'user_index_footer.html' %}
+

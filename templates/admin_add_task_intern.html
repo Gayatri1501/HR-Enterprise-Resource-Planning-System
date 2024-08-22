@@ -1,0 +1,261 @@
+{% include 'user_index_header.html' %}
+
+{% include 'user_index_navbar.html' %}
+
+<style>
+    /* The alert message box */
+.alert {
+  padding: 20px;
+  background-color: green; /* Red */
+  color: white;
+  margin-bottom: 15px;
+}
+
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: black;
+}
+
+
+
+</style>
+<div class="col-10 grid-margin">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Leave Application</h4>
+<style>
+    /* The alert message box */
+    .alert {
+        padding: 20px;
+        background-color: green; /* Red */
+        color: white;
+        margin-bottom: 15px;
+    }
+
+    /* The close button */
+    .closebtn {
+        margin-left: 15px;
+        color: white;
+        font-weight: bold;
+        float: right;
+        font-size: 22px;
+        line-height: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    /* When moving the mouse over the close button */
+    .closebtn:hover {
+        color: black;
+    }
+</style>
+<center>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <center>
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+        </center>
+    {% endif %}
+{% endwith %}
+</center>
+                  <form class="form-sample" enctype="multipart/form-data" method="POST">
+                    <p class="card-description">
+                      Employee
+                    </p>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Application Send </label>
+                          <div class="col-sm-9">
+                            <select class="form-control" name="ddlprofile" required>
+
+                              <option value="Employee">Employee</option>
+                              <option value="Interns">Interns</option>
+
+                            </select>
+                          </div>
+                        </div>
+
+                      </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" id="sendLabel2" >Send </label>
+                            <div class="col-sm-9">
+                                            <select class="form-control" name="ddluser" required>
+
+                                              <option value="Employee">Admin</option>
+
+                                            </select>
+<!--                                            <select class="form-control" name="ddluser"  required>-->
+<!--                                                <option value="" disabled selected>Select an Employee</option>-->
+<!--                                                {% for n in profilelist %}-->
+<!--                                                    {% if n.profile == "Employee" %}-->
+<!--                                                        <option value="{{ n.uname }}">{{ n.uname }}</option>-->
+<!--                                                    {% endif %}-->
+<!--                                                {% endfor %}-->
+<!--                                            </select>-->
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+<!--                    <div class="row">-->
+<!--                      <div class="col-md-6">-->
+<!--                        <div class="form-group row">-->
+<!--                          <label class="col-sm-3 col-form-label">Send </label>-->
+<!--                          <div class="col-sm-9">-->
+<!--                            <select class="form-control" name="ddluser" required>-->
+<!--                            {% for n in profilelist %}-->
+<!--                              <option>{{n.uname}}</option>-->
+<!--                            {% endfor %}-->
+<!--                            </select>-->
+<!--                          </div>-->
+<!--                        </div>-->
+
+<!--                      </div>-->
+
+<!--                    </div>-->
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Application Subject</label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" name="txtname" required>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label"> Description </label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" name="txtdes" required>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Start Date </label>
+                          <div class="col-sm-9">
+                            <input type="date" class="form-control" placeholder="dd/mm/yyyy" name="txtsdate"  required>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Last Time</label>
+                          <div class="col-sm-9">
+                            <input type="time" class="form-control" placeholder="H : M AM/PM" name="txttime">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">End Date </label>
+                          <div class="col-sm-9">
+                            <input type="date" class="form-control" placeholder="dd/mm/yyyy" name="txtldate" required>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <center>
+                    <button class="btn btn-success w-50 py-3"  value="Update" type="submit">Send</button>
+                    </center>
+                  </form>
+                </div>
+              </div>
+</div>
+
+
+{% include 'user_index_footer.html' %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

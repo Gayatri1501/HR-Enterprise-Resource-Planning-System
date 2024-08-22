@@ -1,0 +1,193 @@
+
+
+{% include 'user_index_header.html' %}
+
+{% include 'admin_index_navbar.html' %}
+
+
+
+<div class="col-10 grid-margin">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Update Leave Application</h4>
+                  <style>
+    /* The alert message box */
+    .alert {
+        padding: 20px;
+        background-color: green; /* Red */
+        color: white;
+        margin-bottom: 15px;
+    }
+
+    /* The close button */
+    .closebtn {
+        margin-left: 15px;
+        color: white;
+        font-weight: bold;
+        float: right;
+        font-size: 22px;
+        line-height: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    /* When moving the mouse over the close button */
+    .closebtn:hover {
+        color: black;
+    }
+</style>
+                  <center>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <center>
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+        </center>
+    {% endif %}
+{% endwith %}
+</center>
+
+                  <form class="form-sample" enctype="multipart/form-data" method="POST">
+                    <p class="card-description">
+                      Employee
+                    </p>
+                    {% for n in tasklist %}
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label"> Sender </label>
+                          <div class="col-sm-9">
+                            <select class="form-control" name="ddlprofile" required value="{{n.tprofile}}">
+                              <option>Employee</option>
+                              <option>Interns</option>
+
+                            </select>
+                          </div>
+                        </div>
+
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Send </label>
+                          <div class="col-sm-9">
+                            <h4>{{n.tprofile}}</h4>
+                            <select class="form-control" name="ddluser" required value="{{n.tprofile}}" aria-readonly="true">
+
+                              <option>{{n.ename}}</option>
+
+                            </select>
+                          </div>
+                        </div>
+
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Subject</label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" name="txtname" required value="{{n.tname}}">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label"> Description </label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" name="txtdes" required value="{{n.tdes}}">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Start Date </label>
+                          <div class="col-sm-9">
+                            <input type="date" class="form-control" placeholder="dd/mm/yyyy" name="txtsdate"  required value="{{n.ttdate}}">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Admin Suggest  :</label>
+                          <div class="col-sm-9">
+                              <input type="text" class="form-control" name="txtsug" >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Last Date </label>
+                          <div class="col-sm-9">
+                            <input type="date" class="form-control" placeholder="dd/mm/yyyy" name="txtldate" required value="{{n.tldate}}">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Last Time</label>
+                          <div class="col-sm-9">
+                            <input type="time" class="form-control" placeholder="H : M AM/PM" name="txttime" value="{{n.tltime}}">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+<!--                          <label class="col-sm-3 col-form-label">Task File Download</label>-->
+<!--                          <div class="col-sm-9">-->
+<!--                            {% if n.tupload=="" %}-->
+<!--                                <label style="color:red;"> Task Not Uploaded.</label>-->
+<!--                            {% else %}-->
+<!--                                <a href="{{ url_for('download_file', filename=n.tupload) }}" class="btn btn-outline-success btn-icon-text">-->
+<!--                                    <i class="mdi mdi-arrow-down-bold-circle-outline"></i>-->
+<!--                                    Download Task-->
+<!--                                </a>-->
+<!--                            {% endif %}-->
+<!--                          </div>-->
+                        </div>
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label"> Status Update </label>
+                          <div class="col-sm-9">
+                            <select class="form-control" name="ddlstatus" required>
+                              <option>Pending</option>
+                              <option>In Progress</option>
+                              <option>Approved</option>
+                              <option>Reject</option>
+
+                            </select>
+                          </div>
+                        </div>
+
+                      </div>
+
+                    </div>
+                    {% endfor %}
+                    <center>
+                     <button class="btn btn-success w-50 py-3"  value="Update" type="submit">Update</button>
+                    </center>
+                  </form>
+                </div>
+              </div>
+</div>
+
+
+{% include 'user_index_footer.html' %}

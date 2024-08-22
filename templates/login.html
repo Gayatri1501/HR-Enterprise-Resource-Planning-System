@@ -1,0 +1,117 @@
+
+
+{% include 'head.html' %}
+
+<body>
+<style>
+    /* The alert message box */
+.alert {
+  padding: 20px;
+  background-color: green; /* Red */
+  color: white;
+  margin-bottom: 15px;
+}
+
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: black;
+}
+
+
+
+</style>
+
+
+            <div class="container-xxl bg-primary hero-header">
+                <div class="container px-lg-5">
+                    <div class="row g-5 align-items-end">
+                        <div class="col-lg-6 text-center text-lg-start">
+                            <h1 class="text-white mb-4 animated slideInDown">Login </h1>
+<style>
+    /* The alert message box */
+    .alert {
+        padding: 20px;
+        background-color: green; /* Red */
+        color: white;
+        margin-bottom: 15px;
+    }
+
+    /* The close button */
+    .closebtn {
+        margin-left: 15px;
+        color: white;
+        font-weight: bold;
+        float: right;
+        font-size: 22px;
+        line-height: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    /* When moving the mouse over the close button */
+    .closebtn:hover {
+        color: black;
+    }
+</style>
+<center>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <center>
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+        </center>
+    {% endif %}
+{% endwith %}
+</center>
+                            <p class="text-white pb-3 animated slideInDown">
+                                    <form method="POST" enctype="multipart/form-data">
+                                                            <div class="row g-3">
+
+                                                                <div class="col-12">
+                                                                    <div class="form-floating">
+                                                                        <input type="text" class="form-control" name="txtusername" placeholder="Username" required>
+                                                                        <label for="subject">Username</label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <div class="form-floating">
+                                                                        <input type="password" class="form-control" name="txtpass" placeholder="Password" required>
+                                                                        <label for="subject">Password</label>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-12">
+                                                                    <button class="btn btn-danger w-100 py-3" type="submit">Submit</button>
+                                                                </div>
+                                                            </div>
+                                    </form>
+                            </p>
+
+                            <a href="/admin-login" class="btn btn-secondary py-sm-3 px-sm-5 rounded-pill me-3 animated slideInLeft">Admin Login</a>
+                            <a href="/signup" class="btn btn-light py-sm-3 px-sm-5 rounded-pill animated slideInRight">New Registration</a>
+
+                        </div>
+                        <div class="col-lg-6 text-center text-lg-start">
+                            <img class="img-fluid animated zoomIn" src="Static/First_index_page/img/hero.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+</body>

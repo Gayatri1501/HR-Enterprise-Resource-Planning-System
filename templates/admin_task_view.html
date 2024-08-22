@@ -1,0 +1,103 @@
+<!-- Add this in the head section of your HTML -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<!-- Add this at the end of your HTML, after including other scripts -->
+<script>
+  $(document).ready(function() {
+    $('#navbar-search-input').on('input', function() {
+      var searchQuery = $(this).val().toLowerCase();
+      filterTasks(searchQuery);
+    });
+
+    function filterTasks(query) {
+      $('tbody tr').each(function() {
+        var to = $(this).find('td:nth-child(2)').text().toLowerCase();
+        var taskName = $(this).find('td:nth-child(3)').text().toLowerCase();
+        var lastDate = $(this).find('td:nth-child(4)').text().toLowerCase();
+
+        if (to.includes(query) || taskName.includes(query) || lastDate.includes(query)) {
+          $(this).show();
+        } else {
+          $(this).hide();
+        }
+      });
+    }
+  });
+</script>
+
+
+{% include 'user_index_header.html' %}
+
+{% include 'admin_index_navbar.html' %}
+
+
+
+<div class="col-lg-11 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">View All Task</h4>
+                  <p class="card-description">
+                     <code>
+                       Task List</code>
+                  </p>
+                  <div class="table-responsive">
+
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>
+                            Admin
+                          </th>
+                          <th>
+                            Employee Name
+                          </th>
+                          <th>
+                            Subject
+                          </th>
+                          <th>
+                            Start Date
+                          </th>
+                          <th>
+                            Last Date
+                          </th>
+                          <th>
+                            View Application
+                          </th>
+                        </tr>
+                      </thead>
+                      {% for n in tasklist %}
+                      <tbody>
+                        <tr>
+                          <td class="py-1">
+                            <img src="Static/Dashboard/images/faces/face1.jpg" alt="image">
+                          </td>
+                          <td>
+                            {{ n.ename }}
+                          </td>
+
+                          <td>
+                            {{ n.tname }}
+                          </td>
+                          <td>
+                            {{ n.tldate.strftime('%d/%m/%Y') }}
+                          </td>
+
+                           <td>{{ n.ttdate.strftime('%d/%m/%Y') }}</td>
+
+                          <td><a href="{{ url_for('admintaskedit', tid=n.tid) }}" class="btn btn-dark btn-icon-text">View Application <i class="ti-file btn-icon-append"></i></a> </td>
+
+
+                        </tr>
+
+                      </tbody>
+                      {% endfor %}
+                    </table>
+
+                  </div>
+                </div>
+              </div>
+</div>
+
+{% include 'user_index_footer.html' %}
+
+

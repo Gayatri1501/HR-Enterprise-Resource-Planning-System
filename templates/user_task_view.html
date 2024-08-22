@@ -1,0 +1,135 @@
+{% include 'user_index_header.html' %}
+
+{% include 'user_index_navbar.html' %}
+
+
+
+<div class="col-lg-11 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">View All Task</h4>
+                  <p class="card-description">
+                     <code>
+                       Task List</code>
+                  </p>
+                  <div style="overflow-x:auto; overflow-y: scroll; max-height: 400px;>
+                    <div class="table-responsive" >
+
+                      <table class="table table-striped" >
+                      <thead>
+                        <tr>
+                          <th>
+                            Admin
+                          </th>
+                          <th>
+                            TO
+                          </th>
+                          <th>
+                            Task Name
+                          </th>
+                          <th>
+                            Task Status
+                          </th>
+                          <th>
+                            Last Date
+                          </th>
+                          <th>
+                            Task Send
+                          </th>
+                          <th>
+                            View Task
+                          </th>
+                        </tr>
+                      </thead>
+                      {% for n in tasklist %}
+                      <tbody>
+                        <tr>
+                          <td class="py-1">
+                            <img src="Static/Dashboard/images/faces/face1.jpg" alt="image">
+                          </td>
+                          <td>
+                            {{ n.tsend }}
+                          </td>
+
+                          <td>
+                            {{ n.tname }}
+                          </td>
+                          <td>
+                                {% if n.tstatus == 'Pending' %}
+                                    <label class="badge badge-danger">Pending</label>
+                                {% elif n.tstatus == 'In Progress' %}
+                                    <label class="badge badge-warning">In Progress</label>
+                                {% elif n.tstatus == 'Completed' %}
+                                    <label class="badge badge-info">Completed</label>
+                                {% elif n.tstatus == 'Submit' %}
+                                    <label class="badge badge-success">Submit</label>
+                                {% else %}
+                                    <label class="badge badge-danger">Pending</label>
+
+                                {% endif %}
+                          </td>
+                          <td>
+                            {{ n.tldate }}
+                          </td>
+                          <td>
+                            {{ n.ttdate }}
+                          </td>
+<!--                          <td>-->
+<!--                            <button type="button" class="btn btn-dark btn-icon-text">-->
+<!--                              View-->
+<!--                              <i class="ti-file btn-icon-append"></i>-->
+<!--                            </button>-->
+<!--                          </td>-->
+                          <td><a href="{{ url_for('usertaskedit', tid=n.tid) }}" class="btn btn-dark btn-icon-text">View task <i class="ti-file btn-icon-append"></i></a> </td>
+
+
+                        </tr>
+
+                      </tbody>
+                      {% endfor %}
+                    </table>
+
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+</div>
+
+
+{% include 'user_index_footer.html' %}
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Find all elements with the 'view-task-btn' class
+        var viewTaskButtons = document.querySelectorAll('.view-task-btn');
+
+        // Add click event listeners to each button
+        viewTaskButtons.forEach(function(button) {
+            button.addEventListener('click', function(event) {
+                // Prevent the default behavior of the link
+                event.preventDefault();
+
+                // Extract the tid value from the data attribute
+                var tid = button.dataset.tid;
+
+                // Make an asynchronous request to the server to store the tid value
+                fetch('/store-tid-in-session', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ tid: tid }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Tid stored in session:', data);
+                    // You can perform additional actions if needed
+                })
+                .catch(error => {
+                    console.error('Error storing tid in session:', error);
+                });
+            });
+        });
+    });
+</script>

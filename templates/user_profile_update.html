@@ -1,0 +1,226 @@
+{% include 'user_index_header.html' %}
+
+{% include 'user_index_navbar.html' %}
+
+<style>
+    /* The alert message box */
+.alert {
+  padding: 20px;
+  background-color: green; /* Red */
+  color: white;
+  margin-bottom: 15px;
+}
+
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: black;
+}
+
+
+
+</style>
+<div class="col-9 grid-margin">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Update Your Profile</h4>
+<style>
+    /* The alert message box */
+    .alert {
+        padding: 20px;
+        background-color: green; /* Red */
+        color: white;
+        margin-bottom: 15px;
+    }
+
+    /* The close button */
+    .closebtn {
+        margin-left: 15px;
+        color: white;
+        font-weight: bold;
+        float: right;
+        font-size: 22px;
+        line-height: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    /* When moving the mouse over the close button */
+    .closebtn:hover {
+        color: black;
+    }
+</style>
+<center>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <center>
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+        </center>
+    {% endif %}
+{% endwith %}
+</center>
+                  <form class="form-sample" method="POST" enctype="multipart/form-data">
+                    {% for n in profilelist %}
+                        <p class="card-description">
+                          Personal info
+                        </p>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="col-sm-3 col-form-label">Full Name</label>
+                              <div class="col-sm-9">
+                                <input type="text" class="form-control" name="txtfullname" value="{{ n.fname }}" />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="col-sm-3 col-form-label">Email</label>
+                              <div class="col-sm-9">
+                                <input type="text" class="form-control" name="txtemail" value="{{ n.email }}" />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="col-sm-3 col-form-label">Username</label>
+                              <div class="col-sm-9">
+                                 <input type="text" class="form-control" name="txtusername" value="{{ n.uname }}" readonly/>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="col-sm-3 col-form-label">Password</label>
+                              <div class="col-sm-9">
+                                <input type="text" class="form-control" name="txtpassword" value="{{ n.pass }}" />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="col-sm-3 col-form-label">Designation</label>
+                              <div class="col-sm-9">
+                                <select class="form-control" name="ddldes">
+                                  <option>Full-Stack Developer</option>
+                                  <option>Fronted Developer</option>
+                                  <option>Backend Developer</option>
+                                  <option>Database Developer</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="col-sm-3 col-form-label">Gender</label>
+                              <div class="col-sm-4">
+                                <div class="form-check">
+                                  <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="rdgen" id="membershipRadios1" value="Male" checked>
+                                    Male
+                                  </label>
+                                </div>
+                              </div>
+                              <div class="col-sm-5">
+                                <div class="form-check">
+                                  <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="rdgen" id="membershipRadios2" value="Female">
+                                    Female
+                                  </label>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <p class="card-description">
+                          Work Related
+                        </p>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="col-sm-3 col-form-label"> Experience</label>
+                              <div class="col-sm-9">
+                                <input type="text" class="form-control" name="txtexperience"/>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="col-sm-3 col-form-label">salary</label>
+                              <div class="col-sm-9">
+                                <input type="number" class="form-control" name="txtsalary" />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="col-sm-3 col-form-label"> Mobile </label>
+                              <div class="col-sm-9">
+                                <input type="number" class="form-control" name="txtmobile" />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="col-sm-3 col-form-label">Total Work Project</label>
+                              <div class="col-sm-9">
+                                <input type="number" class="form-control" name="txttotal" />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="col-sm-3 col-form-label">Profile Photo</label>
+                              <div class="col-sm-9">
+                                <input type="file" class="form-control" name="file" />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="col-sm-3 col-form-label">Profile</label>
+                              <div class="col-sm-9">
+                                <select class="form-control" name="ddlprofile" value="{{ n.profile }}">
+                                  <option>Employee</option>
+                                  <option>Intern</option>
+
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                            <div class="col-6">
+                                <button class="btn btn-success w-100 py-3" name="update" value="Update" type="submit">Update</button>
+                            </div>
+                        </div>
+                    {% endfor %}
+                  </form>
+                </div>
+              </div>
+</div>
+
+
+{% include 'user_index_footer.html' %}

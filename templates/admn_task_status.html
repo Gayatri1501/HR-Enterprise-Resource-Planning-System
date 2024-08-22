@@ -1,0 +1,86 @@
+{% include 'user_index_header.html' %}
+
+{% include 'admin_index_navbar.html' %}
+
+
+
+<div class="col-lg-11 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">View All Leave Application</h4>
+                  <p class="card-description">
+                     <code>
+                       Application List</code>
+                  </p>
+                  <div class="table-responsive">
+
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>
+                            Admin
+                          </th>
+                          <th>
+                            Sender
+                          </th>
+                          <th>
+                            Subject Name
+                          </th>
+                          <th>
+                            Last Date
+                          </th>
+                          <th>
+                            Start Date
+                          </th>
+                          <th>
+                            View
+                          </th>
+                        </tr>
+                      </thead>
+                      {% for n in tasklist %}
+                      <tbody>
+                        <tr>
+                          <td class="py-1">
+                            <img src="Static/Dashboard/images/faces/face1.jpg" alt="image">
+                          </td>
+                          <td>
+                            {{ n.tsend }}
+                          </td>
+
+                          <td>
+                            {{ n.tname }}
+                          </td>
+                          <td>
+                            {{ n.tldate }}
+                          </td>
+                          <td>
+                            {{ n.ttdate }}
+                          </td>
+                          <td>
+                                {% if n.tstatus == 'Pending' %}
+                                    <label class="badge badge-danger">Pending</label>
+                                {% elif n.tstatus == 'In Progress' %}
+                                    <label class="badge badge-warning">In Progress</label>
+                                {% elif n.tstatus == 'Approved' %}
+                                    <label class="badge badge-success">Approved</label>
+                                {% elif n.tstatus == 'Reject' %}
+                                    <label class="badge badge-danger">Reject</label>
+                                {% else %}
+                                    <label class="badge badge-info">Pending</label>
+
+                                {% endif %}
+                          </td>
+
+                        </tr>
+
+                      </tbody>
+                      {% endfor %}
+                    </table>
+
+                  </div>
+                </div>
+              </div>
+</div>
+
+
+{% include 'user_index_footer.html' %}

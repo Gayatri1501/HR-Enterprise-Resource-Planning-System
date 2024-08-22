@@ -1,0 +1,111 @@
+{% include 'user_index_header.html' %}
+
+{% include 'admin_index_navbar.html' %}
+
+<br><br>
+<style>
+    /* The alert message box */
+    .alert {
+        padding: 20px;
+        background-color: green; /* Red */
+        color: white;
+        margin-bottom: 15px;
+    }
+
+    /* The close button */
+    .closebtn {
+        margin-left: 15px;
+        color: white;
+        font-weight: bold;
+        float: right;
+        font-size: 22px;
+        line-height: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    /* When moving the mouse over the close button */
+    .closebtn:hover {
+        color: black;
+    }
+</style>
+<center>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <center>
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+        </center>
+    {% endif %}
+{% endwith %}
+</center>
+<br>
+<div class="row" style="display-flex:none;">
+            <div class="col-md-6 grid-margin stretch-card">
+              <div class="card tale-bg">
+                <div class="card-people mt-auto">
+                  <img src="/Static/Dashboard/images/dashboard/people.svg" alt="people">
+                  <div class="weather-info">
+                    <div class="d-flex">
+                      <div>
+                        <h2 class="mb-0 font-weight-normal"><i class="icon-sun mr-2"></i>31<sup>C</sup></h2>
+                      </div>
+                      <div class="ml-2">
+                        <h4 class="location font-weight-normal">Bangalore</h4>
+                        <h6 class="font-weight-normal">India</h6>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 grid-margin transparent">
+              <div class="row">
+                <div class="col-md-6 mb-4 stretch-card transparent">
+                  <div class="card card-tale">
+                    <div class="card-body">
+                      <p class="mb-4">Total Number Of Leave Application</p>
+                      <p class="fs-30 mb-2">{{total_u}}</p>
+                      <p></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4 stretch-card transparent">
+                  <div class="card card-dark-blue">
+                    <div class="card-body">
+                      <p class="mb-4">Total Leave Approved</p>
+                      <p class="fs-30 mb-2">{{totalsubmit}}</p>
+                      <p></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
+                  <div class="card card-light-blue">
+                    <div class="card-body">
+                      <p class="mb-4">Total Employee</p>
+                      <p class="fs-30 mb-2">{{total_pending}}</p>
+                      <p></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 stretch-card transparent">
+                  <div class="card card-light-danger">
+                    <div class="card-body">
+                      <p class="mb-4">Total Interns</p>
+                      <p class="fs-30 mb-2">{{total_in}}</p>
+                      <p></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+</div>
+
+
+{% include 'user_index_footer.html' %}

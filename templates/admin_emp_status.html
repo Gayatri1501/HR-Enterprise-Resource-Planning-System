@@ -1,0 +1,135 @@
+<!-- Add this in the head section of your HTML -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<!--<script>-->
+<!--  $(document).ready(function() {-->
+<!--    $('#navbar-search-input').css('background-color', 'yellow');-->
+<!--  });-->
+<!--</script>-->
+
+
+<!-- Add this at the end of your HTML, after including other scripts -->
+<script>
+  $(document).ready(function() {
+    $('#navbar-search-input').on('input', function() {
+      var searchQuery = $(this).val().toLowerCase();
+      filterEmployees(searchQuery);
+    });
+
+    function filterEmployees(query) {
+      $('tbody tr').each(function() {
+        var fullName = $(this).find('td:nth-child(2)').text().toLowerCase();
+        var designation = $(this).find('td:nth-child(3)').text().toLowerCase();
+        var email = $(this).find('td:nth-child(4)').text().toLowerCase();
+
+        if (fullName.includes(query) || designation.includes(query) || email.includes(query)) {
+          $(this).show();
+        } else {
+          $(this).hide();
+        }
+      });
+    }
+  });
+</script>
+
+
+{% include 'user_index_header.html' %}
+
+{% include 'admin_index_navbar.html' %}
+
+
+
+<div class="col-lg-11 grid-margin stretch-card">
+
+              <div class="card">
+
+                <div class="card-body">
+                  <h4 class="card-title">View All Employee</h4>
+                  <p class="card-description">
+                     <code>Employee List</code>
+                  </p>
+
+<!--                  <div class="input-group col-lg-6">-->
+<!--                    <div class="input-group-prepend hover-cursor" id="navbar-search-icon">-->
+<!--                      <span class="input-group-text" id="search">-->
+<!--                        <i class="icon-search"></i>-->
+<!--                      </span>-->
+<!--                    </div>-->
+<!--                    <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">-->
+<!--                  </div>-->
+
+
+                  <div class="table-responsive">
+
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>
+                            Profile
+                          </th>
+                          <th>
+                            Full name
+                          </th>
+
+                          <th>
+                            Email
+                          </th>
+                          <th>
+                            Profile
+                          </th>
+                          <th>
+                            View Profile
+                          </th>
+                          <th>
+                              Status
+                          </th>
+                          <th>Action</th>
+
+                        </tr>
+                      </thead>
+                      {% for n in profilelist %}
+                      <tbody>
+                        <tr>
+                          <td class="py-1">
+                            <img src="{{ url_for('static', filename='upload_img/' + n.uimg.decode('utf-8')) }}" alt="image">
+                          </td>
+                          <td>
+                            {{ n.fname }}
+                          </td>
+
+
+                          <td>
+                            {{ n.email }}
+                          </td>
+                          <td>
+                            {{ n.profile }}
+                          </td>
+
+                          <td><a href="{{ url_for('adminviewuserprofile', uname=n.uname) }}" class="btn btn-dark btn-icon-text">View Profile <i class="ti-file btn-icon-append"></i></a> </td>
+                          <td>{{n.status}}</td>
+                          <td>
+                              {% if n.status == 'Active' %}
+<!--                                  <a class="btn btn-success" title="click to mark as complete" href="/admin/request/complete/{{n.uname}}"><i class="fa-solid fa-square-check"></i></a><br/>-->
+
+                                  <a href="/admin/request/Inactive/{{n.uname}}" class="btn btn-danger btn-icon-text"> Deactive <i class="ti-file btn-icon-append"></i></a>
+                              {% else %}
+
+                                  <a href="/admin/request/active/{{n.uname}}" class="btn btn-success btn-icon-text"> Active <i class="ti-file btn-icon-append"></i></a>
+                              {% endif %}
+                          </td>
+
+                        </tr>
+
+                      </tbody>
+                      {% endfor %}
+                    </table>
+
+                  </div>
+                </div>
+              </div>
+</div>
+
+
+
+
+{% include 'user_index_footer.html' %}
+

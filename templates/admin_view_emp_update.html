@@ -1,0 +1,149 @@
+{% include 'user_index_header.html' %}
+
+{% include 'admin_index_navbar.html' %}
+
+
+<style>
+    /* The alert message box */
+.alert {
+  padding: 20px;
+  background-color: green; /* Red */
+  color: white;
+  margin-bottom: 15px;
+}
+
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: black;
+}
+
+
+
+</style>
+<div class="col-lg-11 grid-margin stretch-card">
+
+              <div class="card">
+
+                <div class="card-body">
+                  <h4 class="card-title">View All Employee</h4>
+ <style>
+    /* The alert message box */
+    .alert {
+        padding: 20px;
+        background-color: green; /* Red */
+        color: white;
+        margin-bottom: 15px;
+    }
+
+    /* The close button */
+    .closebtn {
+        margin-left: 15px;
+        color: white;
+        font-weight: bold;
+        float: right;
+        font-size: 22px;
+        line-height: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    /* When moving the mouse over the close button */
+    .closebtn:hover {
+        color: black;
+    }
+</style>
+<center>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <center>
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+        </center>
+    {% endif %}
+{% endwith %}
+</center>
+                  <p class="card-description">
+                     <code>Employee List</code>
+                  </p>
+
+
+
+                  <div class="table-responsive">
+
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>
+                            Profile
+                          </th>
+                          <th>
+                            Full name
+                          </th>
+                          <th>
+                            Designation
+                          </th>
+                          <th>
+                            Email
+                          </th>
+                          <th>
+                            Experience
+                          </th>
+                          <th>
+                            View Profile
+                          </th>
+                        </tr>
+                      </thead>
+                      {% for n in profilelist %}
+                      <tbody>
+                        <tr>
+                          <td class="py-1">
+                            <img src="{{ url_for('static', filename='upload_img/' + n.uimg.decode('utf-8')) }}" alt="image">
+                          </td>
+                          <td>
+                            {{ n.fname }}
+                          </td>
+
+                          <td>
+                            {{ n.des }}
+                          </td>
+                          <td>
+                            {{ n.email }}
+                          </td>
+                          <td>
+                            {{ n.exp }}
+                          </td>
+
+                          <td><a href="{{ url_for('adminupdateuserprofile', uname=n.uname) }}" class="btn btn-dark btn-icon-text">Edite Profile <i class="ti-file btn-icon-append"></i></a> </td>
+
+                        </tr>
+
+                      </tbody>
+                      {% endfor %}
+                    </table>
+
+                  </div>
+                </div>
+              </div>
+</div>
+
+
+
+
+{% include 'user_index_footer.html' %}
+
